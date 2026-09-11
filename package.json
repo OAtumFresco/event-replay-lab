@@ -1,0 +1,14 @@
+{
+  "name": "event-replay-lab",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "description": "Reconnect an SSE client with bounded event replay and explicit snapshot recovery.",
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "check": "node --check src/server.js && node --check src/log.js && node --check src/sse.js && node --check public/model.js && node --check public/app.js"
+  }
+}

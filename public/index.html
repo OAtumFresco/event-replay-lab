@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Event Replay Lab — Rui Andrade</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body><main>
+  <header><p class="eyebrow">RUI ANDRADE / ENGINEERING LAB</p><h1>A connection returns.<br>What did it miss?</h1><p class="intro">Disconnect the subscriber, keep changing the server, then recover through event replay or a fresh snapshot.</p></header>
+  <section class="controls" aria-label="Experiment controls"><button id="connection">Disconnect subscriber</button><button id="increment">Add one event</button><button id="overflow">Add 25 events</button></section>
+  <p id="status" role="status" aria-live="polite">Connecting to the event stream…</p>
+  <div class="columns">
+    <section class="card"><p class="eyebrow">SERVER</p><h2>Authoritative state</h2><p id="server-value" class="value">—</p><p id="server-sequence" class="note-meta">Loading</p><p>Retains the most recent 20 events.</p></section>
+    <section class="card"><p class="eyebrow">SUBSCRIBER</p><h2>Local projection</h2><p id="client-value" class="value">—</p><p id="client-sequence" class="note-meta">Waiting for a snapshot</p><p id="cursor" class="note-meta">No cursor yet</p></section>
+  </div>
+  <section class="card history"><h2>Received frames <span id="frame-count">0</span></h2><ol id="frames" aria-label="Recent frames"></ol></section>
+  <details><summary>Run the two recovery experiments</summary><ol><li>Disconnect, add three events, reconnect. Only the three missing events are replayed.</li><li>Disconnect, add 25 events, reconnect. History has expired, so one snapshot replaces the local state.</li><li>Restart the server. Its stream identifier changes and the client accepts a new snapshot.</li></ol></details>
+  <footer>A local, single-process teaching implementation. Memory is bounded; state resets when the server restarts. Writes are not retried automatically.</footer>
+</main></body></html>
