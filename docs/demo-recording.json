@@ -1,0 +1,9 @@
+{
+  "source": "GitHub Actions browser-evidence artifact",
+  "run_url": "https://github.com/OAtumFresco/event-replay-lab/actions/runs/34612262294",
+  "source_commit": "444dbec8484564a4251849e99b71612c6bd4c7ff",
+  "original_sha256": "cd27ecb3bacbd5c78381fa5b4bf2e69a72928dc24c9fa2f767b8b81d7a0c5c9f",
+  "recording_command": "npm run demo:record",
+  "gif_conversion": "8 fps; width 880; 128-color palette; source UI states preserved",
+  "mp4_conversion": "H.264; CRF 24; yuv420p; faststart"
+}

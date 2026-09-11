@@ -1,16 +1,24 @@
 # Event Replay Lab
 
+[![Tests](https://github.com/OAtumFresco/event-replay-lab/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/OAtumFresco/event-replay-lab/actions/workflows/test.yml) ![Node 22 and 24](docs/badges/node.svg) [![Release v0.1.0](docs/badges/version.svg)](https://github.com/OAtumFresco/event-replay-lab/releases/tag/v0.1.0)
+
 **Reconnect a subscriber without guessing what happened while it was away.**
 
 [Português](README.pt.md) · [Tests](https://github.com/OAtumFresco/event-replay-lab/actions/workflows/test.yml) · [Rui Andrade](https://github.com/OAtumFresco)
 
 A small Server-Sent Events server and browser projection with a bounded history. Disconnect the subscriber while the server keeps changing. Reconnect within the retained window to replay missing events; reconnect later to replace the projection with a current snapshot.
 
+## Watch it recover
+
+![Event Replay Lab: recorded failure and recovery in the real browser](docs/demo.gif)
+
+Recorded from the actual interface, with assertions verifying the results. [MP4 video](https://github.com/OAtumFresco/event-replay-lab/releases/download/v0.1.0/demo.mp4) · [Reproduce the recording](docs/verification.md).
+
 ![A subscriber reconnects with its cursor. A retained cursor receives missing events; an expired or previous-stream cursor receives a snapshot.](docs/flow.svg)
 
 ## Run locally
 
-Requires **Node.js 22.13+**. No npm dependencies, database or external service.
+Requires **Node.js 22.13+**. No runtime npm dependencies, database or external service. Browser tests use Playwright as a development dependency.
 
 ```sh
 git clone https://github.com/OAtumFresco/event-replay-lab.git
@@ -24,6 +32,16 @@ Open **http://127.0.0.1:4179**. `LAB_PORT` can override the port.
 npm run check
 npm test
 ```
+
+To run the browser tests:
+
+```sh
+npm ci
+npx playwright install chromium firefox webkit
+npm run test:browser
+```
+
+On Linux, use `npx playwright install --with-deps chromium firefox webkit` to include required system libraries.
 
 ## Two recovery paths
 

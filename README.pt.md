@@ -1,16 +1,24 @@
 # Event Replay Lab
 
+[![Tests](https://github.com/OAtumFresco/event-replay-lab/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/OAtumFresco/event-replay-lab/actions/workflows/test.yml) ![Node 22 and 24](docs/badges/node.svg) [![Release v0.1.0](docs/badges/version.svg)](https://github.com/OAtumFresco/event-replay-lab/releases/tag/v0.1.0)
+
 **Restabelecer uma ligação e recuperar o que aconteceu durante a ausência do cliente.**
 
 [English](README.md) · [Testes](https://github.com/OAtumFresco/event-replay-lab/actions/workflows/test.yml) · [Rui Andrade](https://github.com/OAtumFresco)
 
 Um servidor de Server-Sent Events e um cliente com estado local. O servidor conserva um histórico limitado. Quando o cliente regressa, recebe os eventos em falta ou um retrato do estado atual, se já não existir histórico suficiente.
 
+## Ver em ação
+
+![Event Replay Lab: demonstração real de falha e recuperação](docs/demo.gif)
+
+Gravação automática da interface, com verificações antes de cada resultado. [Vídeo MP4](https://github.com/OAtumFresco/event-replay-lab/releases/download/v0.1.0/demo.mp4) · [Como reproduzir](docs/verification.md).
+
 ![O cliente regressa com um cursor: recebe os eventos em falta ou um retrato atual se o histórico tiver expirado.](docs/flow.svg)
 
 ## Executar
 
-Requer **Node.js 22.13+**. Sem dependências npm, base de dados ou serviços externos.
+Requer **Node.js 22.13+**. A aplicação não requer dependências npm, base de dados ou serviços externos. Os testes de navegador usam Playwright como dependência de desenvolvimento.
 
 ```sh
 git clone https://github.com/OAtumFresco/event-replay-lab.git
@@ -24,6 +32,16 @@ Abrir **http://127.0.0.1:4179**. A variável `LAB_PORT` permite escolher outra p
 npm run check
 npm test
 ```
+
+Para testar no navegador:
+
+```sh
+npm ci
+npx playwright install chromium firefox webkit
+npm run test:browser
+```
+
+Em Linux, usar `npx playwright install --with-deps chromium firefox webkit` para instalar também as bibliotecas do sistema.
 
 ## Duas formas de recuperar
 
