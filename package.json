@@ -5,10 +5,17 @@
   "license": "UNLICENSED",
   "type": "module",
   "description": "Reconnect an SSE client with bounded event replay and explicit snapshot recovery.",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "start": "node src/server.js",
-    "test": "node --test",
-    "check": "node --check src/server.js && node --check src/log.js && node --check src/sse.js && node --check public/model.js && node --check public/app.js"
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/server.js && node --check src/log.js && node --check src/sse.js && node --check public/model.js && node --check public/app.js",
+    "test:browser": "playwright test",
+    "demo:record": "playwright test --config playwright.demo.config.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
   }
 }
